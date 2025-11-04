@@ -1,0 +1,103 @@
+.row { display: flex; gap: 8px; align-items: center; margin-bottom: 12px; }
+.grid { display: grid; grid-template-columns: repeat(4, 110px); gap: 10px; margin-bottom: 14px; }
+.grid .pad { position: relative; width: 110px; height: 70px; }
+.grid .pad button {
+	width: 100%; height: 100%; cursor: pointer;
+	background: var(--panel); color: var(--text);
+	border: 1px solid #2b3241; border-radius: 10px;
+	box-shadow: 0 1px 0 #0b0d12 inset, 0 1px 2px #0006;
+}
+.grid .pad.selected button { outline: 2px solid var(--ring); }
+.grid .pad .progress {
+	position: absolute; left: 8px; right: 8px; bottom: 6px; height: 6px;
+	background: #1f2632; border-radius: 4px; overflow: hidden; display: none;
+}
+.grid .pad .progress .bar {
+	height: 100%; width: 0%; background: var(--accent);
+	transition: width 0.1s linear;
+}
+.grid .pad.loading .progress { display: block; }
+.grid .pad.failed button { background: #3a1c1c; border-color: #5f2a2a; color: #ffb3b3; }
+.grid .pad.loaded button { background: #1e2a22; border-color: #2e5a38; color: #c2f5d0; }
+.grid .pad button:hover { filter: brightness(1.03); }
+.grid .pad button:disabled { opacity: 0.55; cursor: not-allowed; }
+.wrapper {
+	position: relative; width: 640px; height: 140px;
+	background: var(--panel);
+	border: 1px solid #2a3140; border-radius: 10px;
+	box-shadow: 0 2px 6px #0007; overflow: hidden;
+}
+#wave { position: absolute; left: 0; top: 0; z-index: 1; }
+#overlay { position: absolute; left: 0; top: 0; z-index: 2; }
+/* === Overrides: thème clair, sobre et centré === */
+:root {
+	--bg: #f7f8fb;
+	--panel: #ffffff;
+	--muted: #eef2f6;
+	--text: #1f2937;
+	--text-dim: #6b7280;
+	--border: #e5e7eb;
+	--accent: #3b82f6;  /* bleu */
+	--success: #16a34a; /* vert */
+	--danger: #ef4444;  /* rouge */
+	--warning: #f59e0b; /* orange */
+	--ring: #3b82f655;
+}
+
+body { background: var(--bg); color: var(--text); }
+.container { max-width: 900px; margin: 24px auto; }
+h1 { text-align: center; color: var(--text); }
+.row { justify-content: center; }
+.row select, .row button { background: var(--panel); border-color: var(--border); color: var(--text); }
+.row select { min-width: 220px; }
+.row button#loadAll { border-color: var(--accent); }
+.row button#play { border-color: var(--success); }
+.row button#stopAll { border-color: var(--warning); }
+
+.grid { justify-content: center; }
+.grid .pad button { background: var(--panel); color: var(--text); border-color: var(--border); }
+.grid .pad .progress { background: var(--muted); }
+.grid .pad .progress .bar { background: var(--accent); }
+.grid .pad.loaded button { background: #f1fbf3; border-color: #bfe7c8; color: #136d2f; }
+.grid .pad.failed button { background: #fff2f2; border-color: #f5c2c2; color: #9c2424; }
+.grid .pad.selected button { outline: 2px solid var(--ring); }
+
+.wrapper { background: var(--panel); border-color: var(--border); box-shadow: 0 1px 6px #00000014; margin: 0 auto; }
+/* Thème sombre simple et lisible (style étudiant, sans framework) */
+:root {
+	--bg: #0f1115;
+	--panel: #171a22;
+	--muted: #242a36;
+	--text: #e5e7eb;
+	--text-dim: #a8b0bf;
+	--accent: #60a5fa;  /* bleu */
+	--success: #22c55e; /* vert */
+	--danger: #ef4444;  /* rouge */
+	--warning: #f59e0b; /* orange */
+	--ring: #8ab4ff55;
+}
+
+html, body { height: 100%; }
+body {
+	background: var(--bg);
+	color: var(--text);
+	font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+	margin: 16px;
+}
+
+h1 { margin: 0 0 12px 0; font-size: 24px; letter-spacing: .3px; }
+.grid .pad { position: relative; width: 100px; height: 64px; }
+.grid .pad button { width: 100%; height: 100%; cursor: pointer; }
+.grid .pad .progress {
+	position: absolute; left: 4px; right: 4px; bottom: 4px; height: 6px;
+	background: #eee; border-radius: 4px; overflow: hidden; display: none;
+}
+.grid .pad .progress .bar { height: 100%; width: 0%; background: #5aa0ff; transition: width 0.1s linear; }
+.grid .pad.loading .progress { display: block; }
+.grid .pad.failed button { background: #ffd1d1; border: 1px solid #ff8080; }
+.grid .pad.loaded button { background: #eaffea; border: 1px solid #a6e3a6; }
+.grid .pad button:hover { filter: brightness(0.98); }
+.grid .pad button:disabled { opacity: 0.6; cursor: not-allowed; }
+.wrapper { position: relative; width: 600px; height: 120px; border: 1px solid #ccc; }
+#wave { position: absolute; left: 0; top: 0; z-index: 1; }
+#overlay { position: absolute; left: 0; top: 0; z-index: 2; }

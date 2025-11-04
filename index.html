@@ -1,0 +1,27 @@
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Sampler</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="js/main.js" type="module"></script>
+</head>
+<body>
+  <div class="container">
+    <h1>Sampler</h1>
+    <div id="controls" class="row">
+      <label for="presetSelect">Preset:</label>
+      <select id="presetSelect"><option>Chargement…</option></select>
+      <button id="loadAll">Load All</button>
+      <button id="play">Play selection</button>
+      <button id="stopAll" title="Stop current sounds (resume context)">Stop All</button>
+    </div>
+
+    <div id="pads" class="grid"></div>
+
+    <div class="wrapper">
+      <canvas id="wave" width="640" height="140"></canvas>
+      <canvas id="overlay" width="640" height="140"></canvas>
+    </div>
+  </div>
+</body>
+</html>

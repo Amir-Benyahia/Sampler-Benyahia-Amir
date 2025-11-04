@@ -1,0 +1,13 @@
+# Fichiers système/IDE
+.DS_Store
+.vscode/
+Thumbs.db
+
+# Logs et artefacts
+*.log
+dist/
+coverage/
+
+# Dév (si ajout ultérieur)
+node_modules/
+.env
