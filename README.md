@@ -36,13 +36,13 @@ Architecture (fichiers)
 - Données
   - Presets + assets: dossier [presets/](presets/) (ex: [presets/808.json](presets/808.json), [presets/hip-hop.json](presets/hip-hop.json), etc.)
 
-Flux de données (du clic utilisateur au son)
+Flux de données 
 1. Au chargement, le front appelle `/api/presets` via [js/main.js](js/main.js) et remplit le menu.
 2. L’utilisateur choisit un preset → [`sampleInfosFromPreset`](js/main.js) normalise les URLs relatives en URLs absolues sous `/presets/...`.
 3. “Load All” → [`SamplerEngine.loadWithProgress`](js/engine.js) télécharge et décode tous les sons en parallèle, envoie la progression par sample pour animer les barres des pads.
 4. Clic sur un pad → [`SamplerGUI`](js/gui.js) affiche la waveform; la portion $[start,end]$ vient des trimbars et est jouée par [`SamplerEngine.play`](js/engine.js).
 
-Techniques utilisées (alignées avec le cours)
+Techniques utilisées
 - Web Audio API:
   - Décodage via `AudioContext.decodeAudioData` avec fallback callback (compat navigateurs).
   - Lecture d’une sous‑portion du buffer via `AudioBufferSourceNode.start(offset, duration)`.
@@ -54,22 +54,10 @@ Techniques utilisées (alignées avec le cours)
 - Normalisation des chemins:
   - Construction d’URLs absolues avec `new URL(rel, base)`; fallback en préfixant `/presets/`.
   - `decodeURIComponent` côté serveur pour gérer les noms de fichiers avec espaces.
-- Robustesse données:
-  - Suppression des commentaires `//` et `/* ... */` dans les JSON presets avant `JSON.parse` (contenu identique au matériel du cours).
+
 
 Comment exécuter
 1. Démarrer le serveur:
    - `node server.mjs`
 2. Ouvrir: `http://localhost:4000`
 3. Choisir un preset, cliquer “Load All”, puis “Play selection” après avoir ajusté les trims.
-
-Limites et suite (roadmap)
-- Intégration WAM (plugin Sampler) et MIDI.
-- Persistance des trims (localStorage ou sauvegarde backend).
-- Raccourcis clavier + A11y (focus/ARIA) sur les pads.
-- Petits raffinements UI (états d’erreur/réessai, reset clair au changement de preset).
-
-Notes de cohérence
-- L’API `/api/presets` + dossier `/presets/` suivent la structure des exemples fournis avec le cours.
-- Le mapping des pads bas→haut, gauche→droite reproduit l’ergonomie des samplers matériels.
-- Les presets locaux inclus dans [presets/](presets/) se chargent correctement (noms avec espaces ok).
